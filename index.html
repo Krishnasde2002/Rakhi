@@ -60,7 +60,13 @@
       margin-bottom: 30px;
             animation: glow 2s infinite alternate;
     }
-
+      #clickBtn{
+        font-family: 'Times New Roman', Times, serif;
+        background-color: beige;
+        color: #00ccff;
+        animation: glow 2s infinite alternate;
+        border-radius: 20px;
+      }
     .footer {
       font-size: 1.2rem;
       margin-top: auto;
@@ -90,7 +96,15 @@
 <body>
   <h1>💖 Happy Raksha Bandhan 💖</h1>
   <h2>From Your Coder Brother👨🏻‍💻</h2>
+  <button id="clickBtn" style="padding: 10px 20px; font-size: 18px; cursor: pointer;">
+    Click Here
+</button>
 
+<audio id="song" src="DSB.mp3"></audio>
+
+<div id="hiddenContent" style="display: none; margin-top: 20px; font-size: 20px;">
+    🎉 Surprise! Bhai ka gift sirf yehi hai... aur kuch mat expect karna! 😂
+</div>
   <canvas class="rakhi-canvas" id="rakhiCanvas" width="400" height="400"></canvas>
 
   <div class="message-box">
@@ -100,7 +114,12 @@
   </div>
 
   <div class="footer">Made with ❤️ by a Proud Brother</div>
-
+  <script>
+document.getElementById("clickBtn").addEventListener("click", function () {
+    document.getElementById("song").play();
+    document.getElementById("hiddenContent").style.display = "block";
+});
+</script>
   <script>
     const canvas = document.getElementById('rakhiCanvas');
     const ctx = canvas.getContext('2d');
@@ -160,3 +179,4 @@
   </script>
 </body>
 </html>
+
