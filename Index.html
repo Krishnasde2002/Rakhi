@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Raksha Bandhan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      color: #00ffff;
+      animation: glow 2s infinite alternate;
+    }
+    h2 {
+      font-size: 2.0rem;
+      margin-top: 10px;
+      color: #00ffff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffff; }
+      to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ccff; }
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 10px 20px 30px;
+    }
+
+    .rakhi-canvas {
+      margin: 20px auto;
+      display: block;
+      background: black;
+      border: 2px solid #ffcc00;
+      border-radius: 15px;
+    }
+
+    .message-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      margin-bottom: 30px;
+            animation: glow 2s infinite alternate;
+    }
+
+    .footer {
+      font-size: 1.2rem;
+      margin-top: auto;
+      padding-bottom: 20px;
+      opacity: 1.0;
+            animation: glow 2s infinite alternate;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      canvas {
+        width: 90% !important;
+        height: auto !important;
+        display: block;
+        margin: 20px auto;
+        background-color: black;
+        border: 2px solid gold;
+        border-radius: 20px;
+        box-shadow: 0 0 40px 5px gold;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Happy Raksha Bandhan 💖</h1>
+  <h2>From Your Coder Brother👨🏻‍💻</h2>
+
+  <canvas class="rakhi-canvas" id="rakhiCanvas" width="400" height="400"></canvas>
+
+  <div class="message-box">
+    <p>To all the amazing sisters out there — your strength, love, and constant support make this world a better place. May this Raksha Bandhan bring joy, laughter, and endless memories with your beloved brothers. 💫</p>
+    <p><strong>🎁Ab Aur Kisi Gift Ki Ummeed Mat Karna! 😁</strong></p>
+        <p><strong>Tumlog Jaisi Behen ho to Dushman Ki Zarurat Hi Nahin Hai 😁</strong></p>
+  </div>
+
+  <div class="footer">Made with ❤️ by a Proud Brother</div>
+
+  <script>
+    const canvas = document.getElementById('rakhiCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    function drawRainbowCircle(radius, lineWidth, offset) {
+      for (let i = 0; i < 360; i += 2) {
+        const angle = (i + offset) * Math.PI / 180;
+        ctx.beginPath();
+        ctx.strokeStyle = `hsl(${i}, 100%, 50%)`;
+        ctx.lineWidth = lineWidth;
+        ctx.arc(centerX, centerY, radius, angle, angle + 0.05);
+        ctx.stroke();
+      }
+    }
+
+    function drawThread(side = 'left') {
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      const startX = side === 'left' ? 0 : canvas.width;
+      const direction = side === 'left' ? 1 : -1;
+
+      for (let x = 0; x <= 100; x++) {
+        const y = centerY + Math.sin((x + waveOffset) * 0.1) * 10;
+        const drawX = startX + direction * x;
+        if (x === 0) ctx.moveTo(drawX, y);
+        else ctx.lineTo(drawX, y);
+      }
+      ctx.stroke();
+    }
+
+    let waveOffset = 0;
+    let colorOffset = 0;
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Threads
+      drawThread('left');
+      drawThread('right');
+
+      // Rainbow circles (no black hole in center)
+      drawRainbowCircle(70, 10, colorOffset);
+      drawRainbowCircle(90, 10, colorOffset + 60);
+      drawRainbowCircle(110, 10, colorOffset + 120);
+
+      colorOffset += 2;
+      waveOffset += 1;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
